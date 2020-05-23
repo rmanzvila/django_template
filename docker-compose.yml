@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+
+  django:
+    ports:
+      - "8000:8000"
+    command: /start
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgis/postgis:11-3.0
+
+  redis:
+    image: redis:5

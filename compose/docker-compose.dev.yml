@@ -1,0 +1,41 @@
+version: '3.4'
+
+volumes:
+  postgres_data:
+  localstack_data:
+
+networks:
+  default:
+    external:
+      name: django_network
+
+services:
+  django: &django
+    build:
+      context: ""
+      dockerfile: ./Dockerfile
+      target: development
+    image: django_api_development
+    depends_on:
+      - postgres
+      - mailhog
+      - redis
+    env_file:
+      - .envs/dev/config
+      - .envs/dev/postgres
+    volumes:
+      - .:/app
+
+  postgres:
+    env_file:
+      - .envs/dev/postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./tmp/db/backups:/backups
+    ports:
+      - "4400:5432"
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - "8025:8025"

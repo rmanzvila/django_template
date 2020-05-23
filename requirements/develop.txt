@@ -1,0 +1,11 @@
+#
+# C O N F I G U R A T I O N
+#
+django-environ==0.4.5  # https://github.com/joke2k/django-environ
+
+#
+# M O D E L S
+#
+psycopg2==2.8.5 --no-binary psycopg2  # https://github.com/psycopg/psycopg2
+django-model-utils==4.0.0  # https://github.com/jazzband/django-model-utils
+django-modeltranslation==0.14.4  # https://github.com/deschler/django-modeltranslation
