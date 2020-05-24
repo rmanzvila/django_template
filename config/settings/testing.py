@@ -5,7 +5,7 @@
 - Used to run tests fast on the continuous integration server and locally
 """
 
-import logging
+
 
 from config.settings.components import env
 from config.settings.components.common import TEMPLATES
@@ -64,4 +64,3 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
-logging.disable(logging.CRITICAL)
