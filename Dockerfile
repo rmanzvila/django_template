@@ -26,28 +26,14 @@ EXPOSE 8000
 WORKDIR /app
 
 #
-#  D E V E L O P M E N T
+#  P R O D U C T I O N
 #
 FROM image_base as development
 
 RUN pip install -r /requirements/develop.txt
-RUN pip install -r /requirements/testing.txt
-
-COPY compose/entrypoint /entrypoint
-RUN sed -i 's/\r$//g' /entrypoint
-RUN chmod +x /entrypoint
+RUN pip install -r /requirements/production.txt
 
 
-COPY compose/start-dev /start
+COPY compose/start-prod /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
-
-
-ENTRYPOINT ["/entrypoint"]
-
-#
-#  C I / C D
-#
-FROM development as ci_cd
-
-RUN pip install docker-compose awscli

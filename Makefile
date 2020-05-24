@@ -1,6 +1,7 @@
 
 COMPOSE := docker-compose -f docker-compose.yml -f compose/docker-compose.dev.yml
 COMPOSE_TEST := $(COMPOSE) -f compose/docker-compose.test.yml
+COMPOSE_PROD := docker-compose -f docker-compose.yml -f compose/docker-compose.prod.yml
 
 help:
 	@echo
@@ -17,9 +18,14 @@ help:
 	@echo "  - statics			            Run Collect statics command"
 	@echo "  - superuser			        Create a superuser"
 
-build:
-	$(COMPOSE) build
-	@echo "Building project..."
+
+build_prod:
+	@echo "Server django up..."
+	$(COMPOSE_PROD) build
+
+up_prod:
+	@echo "Server django up..."
+	$(COMPOSE_PROD) up
 
 up:
 	@echo "Server django up..."
@@ -60,3 +66,7 @@ test:
 
 tests:
 	$(COMPOSE_TEST) run --rm django pytest -n auto --pyargs $(ARG)
+
+shell_prod:
+	@echo "Opening container bash session"
+	$(COMPOSE_PROD) run --rm django bash
