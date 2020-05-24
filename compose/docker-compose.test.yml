@@ -6,3 +6,14 @@ services:
     env_file:
       - .envs/test/django
       - .envs/dev/postgres
+
+  nginx:
+    restart: always
+    container_name: nginx_server
+    build:
+      context: ./compose/nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - django
+    ports:
+      - "0.0.0.0:80:80"

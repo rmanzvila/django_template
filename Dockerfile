@@ -31,6 +31,7 @@ WORKDIR /app
 FROM image_base as development
 
 RUN pip install -r /requirements/develop.txt
+RUN pip install -r /requirements/testing.txt
 RUN pip install -r /requirements/production.txt
 
 
