@@ -31,6 +31,7 @@ WORKDIR /app
 FROM image_base as development
 
 RUN pip install -r /requirements/develop.txt
+RUN pip install -r /requirements/testing.txt
 
 COPY compose/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint

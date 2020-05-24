@@ -5,4 +5,13 @@ wheel==0.34.2
 pip==20.0.2
 django==3.0.6
 bcrypt==3.1.7  # https://github.com/pyca/bcrypt
-django-crispy-forms==1.9.0  # https://github.com/django-crispy-forms/django-crispy-forms
+django-split-settings==1.0  # https://github.com/sobolevn/django-split-settings
+django-anymail==7.1.0 # https://github.com/anymail/django-anymail/
+
+
+#
+# A P I   R E Q U I R E M E N T S
+#
+djangorestframework==3.11.0  # https://github.com/encode/django-rest-framework
+djangorestframework_simplejwt==4.4.0  # https://github.com/davesque/django-rest-framework-simplejwt
+djangorestframework-api-key==1.4.1  # https://florimondmanca.github.io/djangorestframework-api-key/

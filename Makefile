@@ -1,5 +1,6 @@
 
 COMPOSE := docker-compose -f docker-compose.yml -f compose/docker-compose.dev.yml
+COMPOSE_TEST := $(COMPOSE) -f compose/docker-compose.test.yml
 
 help:
 	@echo
@@ -37,6 +38,10 @@ debug:
 	@echo "Launchings Server for debbugging..."
 	$(COMPOSE) run --service-ports django
 
+migrations:
+	@echo "Applying migrations ..."
+	$(COMPOSE) run --rm django python manage.py makemigrations $(ARG)
+
 migrate:
 	@echo "Applying migrations ..."
 	$(COMPOSE) run --rm django python manage.py migrate $(ARG)
@@ -48,3 +53,10 @@ superuser:
 statics:
 	@echo "Collect statics ..."
 	$(COMPOSE) run --rm django python manage.py collectstatic
+
+test:
+	@echo "Running tests with pytest cleaning cache..."
+	$(COMPOSE_TEST) run --rm django pytest --pyargs $(ARG)
+
+tests:
+	$(COMPOSE_TEST) run --rm django pytest -n auto --pyargs $(ARG)
