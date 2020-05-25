@@ -2,6 +2,7 @@
 COMPOSE := docker-compose -f docker-compose.yml -f compose/docker-compose.dev.yml
 COMPOSE_TEST := $(COMPOSE) -f compose/docker-compose.test.yml
 COMPOSE_PROD := docker-compose -f docker-compose.yml -f compose/docker-compose.prod.yml
+COMPOSE_PROD_CLEAN := docker-compose -f docker-compose.yml -f compose/docker-compose.dev.yml up --remove-orphans
 
 help:
 	@echo
